@@ -18,4 +18,15 @@ class ArticleController extends Controller
         return view('articles.index', compact('articles'));
 
     }
+
+    public function show($id)
+    {
+        // fetch the one article that is requested
+        $article = \App\Models\Article::find($id);
+
+        // send article to its view
+        // return response
+        return view('articles.show', compact('article'));
+    }
+    //
 }
