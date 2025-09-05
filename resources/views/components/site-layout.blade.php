@@ -11,7 +11,7 @@
     <div>
         <a href="/articles">All articles</a>
         |
-        All authors
+        <a href="/authors">All authors</a>
     </div>
 </header>
 
