@@ -15,4 +15,11 @@ class AuthorController extends Controller
 
         return view('authors.index', compact('authors'));
     }
+
+    public function show($id)
+    {
+        $author = \App\Models\User::find($id);
+
+        return view('authors.show', compact('author'));
+    }
 }
