@@ -44,5 +44,27 @@ class ArticleController extends Controller
 
         return redirect()->route('articles.show', $article->id);
     }
+
+    public function edit($id)
+    {
+        $article = \App\Models\Article::find($id);
+
+        return view('articles.edit', compact('article'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        // Step 1: load the correct article from MODEL
+        $article = \App\Models\Article::find($id);
+
+        // Step 2: Update the changes
+        $article->update([
+            'title' => $request->title,
+            'content' => $request->content,
+        ]);
+
+        // Redirect to show
+        return redirect()->route('articles.show', $article->id);
+    }
     //
 }
