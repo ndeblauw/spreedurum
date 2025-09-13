@@ -1,6 +1,7 @@
 <x-site-layout>
 
     <h1 class="text-4xl font-bold">{{$article->title}}</h1>
+    <a href="/articles/{{$article->id}}/edit" class="underline">EDIT</a>
 
     <div class="mb-2 text-blue-800">by our reporter: {{$article->author->name}}</div>
 
