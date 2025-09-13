@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -66,5 +67,16 @@ class ArticleController extends Controller
         // Redirect to show
         return redirect()->route('articles.show', $article->id);
     }
+
+    public function destroy($id)
+    {
+        // fetch the one article that is requested
+        $article = \App\Models\Article::find($id);
+
+        $article->delete();
+
+        return redirect()->route('articles.index');
+    }
+
     //
 }
