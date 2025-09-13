@@ -28,5 +28,21 @@ class ArticleController extends Controller
         // return response
         return view('articles.show', compact('article'));
     }
+
+    public function create()
+    {
+        return view('articles.create');
+    }
+
+    public function store(Request $request)
+    {
+        $article = Article::create([
+            'title' => $request->title,
+            'content' => $request->content,
+            'author_id' => 1, // quick fix for now
+        ]);
+
+        return redirect()->route('articles.show', $article->id);
+    }
     //
 }
