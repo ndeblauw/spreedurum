@@ -4,6 +4,11 @@
     <a href="/articles/{{$article->id}}/edit" class="underline">EDIT</a>
 
     <div class="mb-2 text-blue-800">by our reporter: {{$article->author->name}}</div>
+    <form action="/articles/{{$article->id}}" method="post">
+        @method('DELETE')
+        @csrf
+        <button  class="underline">DELETE</button>
+    </form>
 
 
     <div>
