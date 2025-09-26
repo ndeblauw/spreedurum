@@ -22,6 +22,23 @@
                 {{$comment->content}}
             </div>
         @endforeach
+
+        <form action="comments" method="post" class="bg-gray-200 p-4">
+            @csrf
+
+            <input type="hidden" name="article_id" value="{{$article->id}}"/>
+            <div>
+                <label for="content">new comment</label><br/>
+                <textarea name="content" class="bg-gray-50 p-2 w-1/2">{{old('content')}}</textarea><br/>
+                @error('content')
+                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                @enderror
+            </div>
+
+            <br/><br/>
+            <button class="bg-blue-500 p-1 uppercase" type="submit">Put comment</button>
+        </form>
+
     </div>
 
 </x-site-layout>
