@@ -37,6 +37,12 @@ class ArticleController extends Controller
 
     public function store(Request $request)
     {
+        // Step 1: validate the incoming request data
+        $request->validate([
+            'title' => ['required', 'string', 'max:25', 'min:10'],
+            'content' => ['required', 'string'],
+        ]);
+
         $article = Article::create([
             'title' => $request->title,
             'content' => $request->content,
@@ -58,7 +64,13 @@ class ArticleController extends Controller
         // Step 1: load the correct article from MODEL
         $article = \App\Models\Article::find($id);
 
-        // Step 2: Update the changes
+        // Step 2: validate the incoming request data
+        $request->validate([
+            'title' => ['required', 'string', 'max:25', 'min:10'],
+            'content' => ['required', 'string'],
+        ]);
+
+        // Step 3: Update the changes
         $article->update([
             'title' => $request->title,
             'content' => $request->content,
