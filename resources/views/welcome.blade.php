@@ -25,7 +25,15 @@
             @endif
         </header>
 
-
+        <div class="grid grid-cols-2 gap-6">
+            @foreach($articles as $article)
+                <div>
+                    <h2 class="font-bold">{{$article->title}}</h2>
+                    <h3 class="italic">by {{$article->author->name}}</h3>
+                    {{$article->content}}
+                </div>
+            @endforeach
+        </div>
 
 
         <div class="max-w-6xl mx-auto px-4 py-4 bg-green-50 border-xl shadow-2xl mb-4 text-green-700">
