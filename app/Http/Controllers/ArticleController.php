@@ -54,7 +54,13 @@ class ArticleController extends Controller
 
     public function edit($id)
     {
+        // Get the article
         $article = \App\Models\Article::find($id);
+
+        // Check access rights
+        if (! $article->canEditOrDelete( auth()->user() )) {
+            return redirect()->route('articles.show', ['id' => $article->id]);
+        }
 
         return view('articles.edit', compact('article'));
     }
@@ -63,6 +69,11 @@ class ArticleController extends Controller
     {
         // Step 1: load the correct article from MODEL
         $article = \App\Models\Article::find($id);
+
+        // Check access rights
+        if (! $article->canEditOrDelete( auth()->user() )) {
+            abort(403);
+        }
 
         // Step 2: validate the incoming request data
         $request->validate([
@@ -85,10 +96,13 @@ class ArticleController extends Controller
         // fetch the one article that is requested
         $article = \App\Models\Article::find($id);
 
+        // Check access rights
+        if (! $article->canEditOrDelete( auth()->user() )) {
+            abort(403);
+        }
+
         $article->delete();
 
         return redirect()->route('articles.index');
     }
-
-    //
 }

@@ -21,4 +21,19 @@ class Article extends Model
     {
         return $this->hasMany(Comment::class, 'article_id');
     }
+
+    public function canEditOrDelete(User $user): bool
+    {
+        // Admin users can always edit and delete all articles
+        if($user->isAdmin()) {
+            return true;
+        }
+
+        // Only the author can delete or edit his/her article
+        if($this->author_id !== $user->id) {
+            return false;
+        }
+
+        return true;
+    }
 }

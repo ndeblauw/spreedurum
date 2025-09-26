@@ -52,6 +52,15 @@ class User extends Authenticatable
         return $this->hasMany(Article::class, 'author_id');
     }
 
+    public function isAdmin(): bool
+    {
+        if($this->email === 'admin@admin.com') {
+            return true;
+        }
+
+        return false;
+    }
+
     /**
      * Get the user's initials
      */
