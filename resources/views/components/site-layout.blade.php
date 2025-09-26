@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <title>Articles overview</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -12,6 +13,14 @@
         <a href="/articles">All articles</a>
         |
         <a href="/authors">All authors</a>
+    </div>
+    <div class="ml-24">
+        @auth
+            {{ auth()->user()->name }} |
+            <form action="{{route('logout')}}" method="post">@csrf <button type="submit">Logout</button></form>
+        @else
+            login button
+        @endauth
     </div>
 </header>
 
