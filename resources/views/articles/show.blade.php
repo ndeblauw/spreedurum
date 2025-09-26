@@ -1,13 +1,20 @@
 <x-site-layout>
 
     <h1 class="text-4xl font-bold">{{$article->title}}</h1>
-    <a href="/articles/{{$article->id}}/edit" class="underline">EDIT</a>
 
-    <form action="/articles/{{$article->id}}" method="post">
-        @method('DELETE')
-        @csrf
-        <button  class="underline">DELETE</button>
-    </form>
+    @auth
+        @if($article->canEditOrDelete(auth()->user()))
+            <a href="/articles/{{$article->id}}/edit" class="underline">EDIT</a>
+
+            <form action="/articles/{{$article->id}}" method="post">
+                @method('DELETE')
+                @csrf
+                <button  class="underline">DELETE</button>
+            </form>
+        @else
+            <span class="text-xs">If something is wrong.....</span>
+        @endif
+    @endauth
 
 
     <div class="mb-2 text-blue-800">by our reporter: {{$article->author->name}}.</div>
@@ -23,6 +30,7 @@
             </div>
         @endforeach
 
+        @auth
         <form action="comments" method="post" class="bg-gray-200 p-4">
             @csrf
 
@@ -38,6 +46,7 @@
             <br/><br/>
             <button class="bg-blue-500 p-1 uppercase" type="submit">Put comment</button>
         </form>
+        @endauth
 
     </div>
 
