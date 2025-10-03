@@ -3,9 +3,19 @@
 use App\Http\Controllers\AuthorController;
 use Illuminate\Support\Facades\Route;
 
+
+/*
+ * Publicly accessible routes
+ */
 Route::get('/', [\App\Http\Controllers\WelcomeController::class, 'index'])->name('home');
 
+Route::get('authors', [AuthorController::class, 'index']);
+Route::get('authors/{id}', [AuthorController::class, 'show']);
 
+
+/*
+ * Routes that require authentication
+ */
 Route::middleware('auth')->group(function () {
     Route::get('articles/create', [\App\Http\Controllers\ArticleController::class, 'create'])->name('articles.create');
     Route::post('articles', [\App\Http\Controllers\ArticleController::class, 'store'])->name('articles.store');
@@ -20,7 +30,5 @@ Route::get('articles/{id}', [\App\Http\Controllers\ArticleController::class, 'sh
 
 Route::post('comments', [\App\Http\Controllers\CommentController::class, 'store'])->name('comments.store');
 
-Route::get('authors', [AuthorController::class, 'index']);
-Route::get('authors/{id}', [AuthorController::class, 'show']);
 
 require __DIR__.'/auth.php';
