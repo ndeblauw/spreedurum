@@ -2,11 +2,7 @@
 
     <h1 class="text-4xl font-bold">{{$article->title}}</h1>
 
-    @if(session()->has('specialMessage'))
-        <div class="bg-green-50 p-2 border border-green-500 text-500">
-            {{ session()->get('specialMessage') }}
-        </div>
-    @endif
+    <x:message-block />
 
     @auth
         @if($article->canEditOrDelete(auth()->user()))
