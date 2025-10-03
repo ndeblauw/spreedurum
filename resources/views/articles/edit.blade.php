@@ -1,6 +1,6 @@
 <x-site-layout>
 
-    <form action="/articles/{{$article->id}}" method="post">
+    <form action="/management/articles/{{$article->id}}" method="post">
 
         @method('PUT')
         @csrf

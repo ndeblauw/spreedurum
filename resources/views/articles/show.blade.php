@@ -4,9 +4,9 @@
 
     @auth
         @if($article->canEditOrDelete(auth()->user()))
-            <a href="/articles/{{$article->id}}/edit" class="underline">EDIT</a>
+            <a href="/management/articles/{{$article->id}}/edit" class="underline">EDIT</a>
 
-            <form action="/articles/{{$article->id}}" method="post">
+            <form action="/management/articles/{{$article->id}}" method="post">
                 @method('DELETE')
                 @csrf
                 <button  class="underline">DELETE</button>

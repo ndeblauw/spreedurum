@@ -12,16 +12,19 @@ Route::get('/', [\App\Http\Controllers\WelcomeController::class, 'index'])->name
 Route::get('authors', [AuthorController::class, 'index']);
 Route::get('authors/{id}', [AuthorController::class, 'show']);
 
+Route::get('articles', [\App\Http\Controllers\ArticleController::class, 'index'] )->name('articles.index');
+Route::get('articles/{id}', [\App\Http\Controllers\ArticleController::class, 'show'])->name('articles.show');
+
 
 /*
  * Routes that require authentication
  */
 Route::middleware('auth')->group(function () {
-    Route::get('articles/create', [\App\Http\Controllers\ArticleController::class, 'create'])->name('articles.create');
-    Route::post('articles', [\App\Http\Controllers\ArticleController::class, 'store'])->name('articles.store');
-    Route::get('articles/{id}/edit', [\App\Http\Controllers\ArticleController::class, 'edit'])->name('articles.edit');
-    Route::put('articles/{id}', [\App\Http\Controllers\ArticleController::class, 'update'])->name('articles.update');
-    Route::delete('articles/{id}', [\App\Http\Controllers\ArticleController::class, 'destroy'])->name('articles.destroy');
+    Route::get('management/articles/create', [\App\Http\Controllers\ArticleManagementController::class, 'create'])->name('articles.create');
+    Route::post('management/articles', [\App\Http\Controllers\ArticleManagementController::class, 'store'])->name('articles.store');
+    Route::get('management/articles/{id}/edit', [\App\Http\Controllers\ArticleManagementController::class, 'edit'])->name('articles.edit');
+    Route::put('management/articles/{id}', [\App\Http\Controllers\ArticleManagementController::class, 'update'])->name('articles.update');
+    Route::delete('management/articles/{id}', [\App\Http\Controllers\ArticleManagementController::class, 'destroy'])->name('articles.destroy');
 });
 
 Route::get('articles', [\App\Http\Controllers\ArticleController::class, 'index'] )->name('articles.index');

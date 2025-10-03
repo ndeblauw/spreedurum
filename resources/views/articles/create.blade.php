@@ -1,7 +1,7 @@
 <x-site-layout>
 
 
-    <form action="/articles" method="post">
+    <form action="/management/articles" method="post">
 
         @csrf
 
