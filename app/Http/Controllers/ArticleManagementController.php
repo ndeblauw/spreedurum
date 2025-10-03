@@ -87,6 +87,8 @@ class ArticleManagementController extends Controller
             'content' => $request->content,
         ]);
 
+        session()->flash('specialMessage', 'Your update of the article was successful');
+
         // Redirect to show
         return redirect()->route('articles.show', $article->id);
     }
@@ -105,4 +107,5 @@ class ArticleManagementController extends Controller
 
         return redirect()->route('articles.index');
     }
+
 }

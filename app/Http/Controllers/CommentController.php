@@ -22,6 +22,8 @@ class CommentController extends Controller
             'content' => $request->content,
         ]);
 
+        session()->flash('specialMessage', 'Your comment has been posted!');
+
         return redirect()->route('articles.show', $request->article_id);
     }
 

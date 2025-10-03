@@ -2,6 +2,12 @@
 
     <h1 class="text-4xl font-bold">{{$article->title}}</h1>
 
+    @if(session()->has('specialMessage'))
+        <div class="bg-green-50 p-2 border border-green-500 text-500">
+            {{ session()->get('specialMessage') }}
+        </div>
+    @endif
+
     @auth
         @if($article->canEditOrDelete(auth()->user()))
             <a href="/management/articles/{{$article->id}}/edit" class="underline">EDIT</a>
@@ -31,7 +37,7 @@
         @endforeach
 
         @auth
-        <form action="comments" method="post" class="bg-gray-200 p-4">
+        <form action="/comments" method="post" class="bg-gray-200 p-4">
             @csrf
 
             <input type="hidden" name="article_id" value="{{$article->id}}"/>
