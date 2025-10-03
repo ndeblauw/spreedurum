@@ -16,7 +16,7 @@ class ArticleManagementController extends Controller
 
         // send articles to the view
         // return response
-        return view('articles.index', compact('articles'));
+        return view('management.articles.index', compact('articles'));
 
     }
 
@@ -27,12 +27,12 @@ class ArticleManagementController extends Controller
 
         // send article to its view
         // return response
-        return view('articles.show', compact('article'));
+        return view('management.articles.show', compact('article'));
     }
 
     public function create()
     {
-        return view('articles.create');
+        return view('management.articles.create');
     }
 
     public function store(Request $request)
@@ -62,7 +62,7 @@ class ArticleManagementController extends Controller
             return redirect()->route('articles.show', ['id' => $article->id]);
         }
 
-        return view('articles.edit', compact('article'));
+        return view('management.articles.edit', compact('article'));
     }
 
     public function update(Request $request, $id)
