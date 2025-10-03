@@ -20,6 +20,7 @@ Route::get('articles/{id}', [\App\Http\Controllers\ArticleController::class, 'sh
  * Routes that require authentication
  */
 Route::middleware('auth')->group(function () {
+    Route::get('management/articles', [\App\Http\Controllers\ArticleManagementController::class, 'index'])->name('articles.index');
     Route::get('management/articles/create', [\App\Http\Controllers\ArticleManagementController::class, 'create'])->name('articles.create');
     Route::post('management/articles', [\App\Http\Controllers\ArticleManagementController::class, 'store'])->name('articles.store');
     Route::get('management/articles/{id}/edit', [\App\Http\Controllers\ArticleManagementController::class, 'edit'])->name('articles.edit');

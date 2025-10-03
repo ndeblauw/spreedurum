@@ -9,8 +9,8 @@ class ArticleManagementController extends Controller
 {
     public function index()
     {
-        // fetch articles from DB
-        $articles = \App\Models\Article::all();
+        // fetch articles from DB that I am allowed to edit
+        $articles = \App\Models\Article::where('author_id', auth()->user()->id)->get();
 
         //dd($articles); // to quickly analyse what you loaded
 
